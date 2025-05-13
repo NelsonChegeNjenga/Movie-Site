@@ -5,6 +5,8 @@ import MovieCard from './components/MovieCard';
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
+const id=null;
+
 const API_OPTIONS = {
   method: 'GET',
   headers: {
@@ -18,7 +20,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const fetchMovies = async () => {
     
     setErrorMessage('');
@@ -31,6 +33,7 @@ const App = () => {
       }
 
       const data = await response.json();
+      console.log(data)
       setMovies(data.results);
 
     } catch (error) {
@@ -74,7 +77,8 @@ const App = () => {
           ) : (
            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   {movies.map((movie) => (
-    <MovieCard key={movie.id} movie={movie} />
+    
+    <MovieCard key={movie.id} movie={movie}/>
   ))}
 </div>
 

@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const MovieCard = ({movie:{title,vote_average,poster_path, original_language, release_date}}) => {
+const MovieCard = ({movie:{id,title,vote_average,poster_path, original_language, release_date}}) => {
+    const [hasLiked, setHasLiked]= useState(false)
+
+
+    const handleLike=()=>{
+        setHasLiked((movie_id)=>{
+            return !movie_id
+        })
+    }
+
   return (
     <div className='movie-card'>
       <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}`: '/no-movie.png'} alt={title} />
@@ -19,6 +28,11 @@ const MovieCard = ({movie:{title,vote_average,poster_path, original_language, re
                 {release_date ? release_date.split('-')[0]: 'N/A'}
             </p>
             <span>•</span>
+            <button onClick={()=>{handleLike()}}>
+                {
+                    hasLiked ? "❤️" : "🤍"
+                }
+            </button>
         </div>
       </div>
     </div>
